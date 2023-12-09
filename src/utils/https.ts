@@ -27,19 +27,15 @@ const httpInterceptor = {
             options.url = baseUrl + options.url
         }
         options.timeout = 10000
-        console.log(options?.header);
         options.header = {
             ...options.header,
             'source-client': 'miniapp'
         }
         const memberStore = useMemberStore()
         const token = memberStore?.profile?.token
-        // 
         if (token) {
             options.header.Authorization = token
         }
-        console.log(options);
-
     },
 }
 
@@ -58,7 +54,7 @@ export const http = <T>(options: UniApp.RequestOptions) => {
                     // 401
                     const memberStore = useMemberStore()
                     memberStore.clearProfile()
-                    uni.navigateTo({url: '/pages/login/login'})
+                    uni.navigateTo({ url: '/pages/login/login' })
                 } else {
                     // 其他错误 -> 根据后端错误信息轻提示
                     uni.showToast({
