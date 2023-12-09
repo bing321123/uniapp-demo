@@ -1,5 +1,5 @@
 import { http } from "@/utils/https";
-import type { BannerItem, CategoryItem } from "@/types/home.d.ts";
+import type { BannerItem, CategoryItem, HotItem } from "@/types/home.d.ts";
 
 export const getHomeBannerApi = (distributionSite = 1) => {
     return http<BannerItem[]>({
@@ -13,5 +13,12 @@ export const getHomeBannerApi = (distributionSite = 1) => {
 export const getHomeCategoryApi = () => {
     return http<CategoryItem[]>({
         url: '/home/category/mutli',
+    })
+}
+
+export const getHomeHotApi = () => {
+    return http<HotItem[]>({
+        method: 'GET',
+        url: '/home/hot/mutli',
     })
 }

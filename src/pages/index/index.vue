@@ -2,18 +2,19 @@
   <view>
     <CustomNavigation />
     <XtxSwiper :list="bannerList" />
-    <CategoryPanel :list="categoryList"/>
+    <CategoryPanel :list="categoryList" />
+    <HotPanel :list="hotList" />
   </view>
 </template>
 
 <script setup lang="ts">
 import CustomNavigation from './components/CustomNavigation.vue'
 import CategoryPanel from './components/CategoryPanel.vue'
+import HotPanel from './components/HotPanel.vue'
 import XtxSwiper from '@/components/XtxSwiper.vue'
-import { onLoad } from '@dcloudio/uni-app'
-import { getHomeBannerApi, getHomeCategoryApi } from '@/services/home'
+import { getHomeBannerApi, getHomeCategoryApi, getHomeHotApi } from '@/services/home'
 import { ref, onMounted } from 'vue'
-import type { BannerItem, CategoryItem } from "@/types/home.d.ts";
+import type { BannerItem, CategoryItem, HotItem } from '@/types/home.d.ts'
 
 const bannerList = ref<BannerItem[]>([])
 const getHomeBannerData = async () => {
@@ -27,9 +28,15 @@ const getHomeCategoryData = async () => {
   categoryList.value = result
 }
 
+const hotList = ref<HotItem[]>([])
+const getHomeHotData = async () => {
+  const res = await getHomeHotApi()
+  hotList.value = res.result
+}
+
 onMounted(async () => {
   // TODO 失败？
-  await Promise.all([getHomeBannerData(), getHomeCategoryData()])
+  await Promise.all([getHomeBannerData(), getHomeCategoryData(), getHomeHotData()])
 })
 </script>
 
