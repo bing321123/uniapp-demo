@@ -1,6 +1,5 @@
 <template>
   <view class="navbar" :style="{ paddingTop: safeAreaInsets!.top + 10 + 'px' }">
-    <view class="status-bar"></view>
     <!-- logo文字 -->
     <view class="logo">
       <image class="logo-image" src="@/static/images/logo.png"></image>
@@ -27,10 +26,6 @@ const { safeAreaInsets } = uni.getSystemInfoSync()
   display: flex;
   flex-direction: column;
   padding-top: 20px;
-
-  .status-bar {
-    height: var(--status-bar-height);
-  }
 
   .logo {
     display: flex;
