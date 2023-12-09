@@ -2,16 +2,18 @@
   <view>
     <CustomNavigation />
     <XtxSwiper :list="bannerList" />
+    <CategoryPanel :list="categoryList"/>
   </view>
 </template>
 
 <script setup lang="ts">
 import CustomNavigation from './components/CustomNavigation.vue'
+import CategoryPanel from './components/CategoryPanel.vue'
 import XtxSwiper from '@/components/XtxSwiper.vue'
 import { onLoad } from '@dcloudio/uni-app'
-import { getHomeBannerApi } from '@/services/home'
+import { getHomeBannerApi, getHomeCategoryApi } from '@/services/home'
 import { ref, onMounted } from 'vue'
-import type { BannerItem } from '@/types/home.d.ts'
+import type { BannerItem, CategoryItem } from "@/types/home.d.ts";
 
 const bannerList = ref<BannerItem[]>([])
 const getHomeBannerData = async () => {
@@ -19,8 +21,15 @@ const getHomeBannerData = async () => {
   bannerList.value = result
 }
 
+const categoryList = ref<CategoryItem[]>([])
+const getHomeCategoryData = async () => {
+  const { result } = await getHomeCategoryApi()
+  categoryList.value = result
+}
+
 onMounted(async () => {
-  await Promise.all([getHomeBannerData()])
+  // TODO 失败？
+  await Promise.all([getHomeBannerData(), getHomeCategoryData()])
 })
 </script>
 

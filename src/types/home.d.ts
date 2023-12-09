@@ -9,3 +9,10 @@ export type BannerItem = {
     // 跳转类型
     type: string
 }
+
+// 分类数据类型
+export type CategoryItem = {
+    icon: string
+    id: string
+    name: string
+}
