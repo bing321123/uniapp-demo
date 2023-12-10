@@ -119,7 +119,7 @@ scroll-view 的使用
 <template>
   <view class="viewport">
     <CustomNavigation />
-    <!-- 注意这里 -->
+    <!-- scroll-view -->
     <scroll-view
       enable-back-to-top
       refresher-enabled
