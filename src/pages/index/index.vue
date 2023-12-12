@@ -10,15 +10,19 @@
       class="scroll-view"
       scroll-y
     >
-      <XtxSwiper :list="bannerList" />
-      <CategoryPanel :list="categoryList" />
-      <HotPanel :list="hotList" />
-      <XtxGuess ref="guessRef" />
-    </scroll-view>
+      <PageSkeleton v-if="isLoading" />
+      <template v-else>
+        <XtxSwiper :list="bannerList" />
+        <CategoryPanel :list="categoryList" />
+        <HotPanel :list="hotList" />
+        <XtxGuess ref="guessRef" />
+      </scroll-view>
+    </template>
   </view>
 </template>
 
 <script setup lang="ts">
+import PageSkeleton from './PageSkeleton.vue'
 import CustomNavigation from './components/CustomNavigation.vue'
 import CategoryPanel from './components/CategoryPanel.vue'
 import HotPanel from './components/HotPanel.vue'
@@ -28,6 +32,8 @@ import { getHomeBannerApi, getHomeCategoryApi, getHomeHotApi } from '@/services/
 import { ref, onMounted } from 'vue'
 import type { BannerItem, CategoryItem, HotItem } from '@/types/home.d.ts'
 import type { XtxGuessInstance } from '@/types/component'
+
+const isLoading = ref(false)
 
 const bannerList = ref<BannerItem[]>([])
 const getHomeBannerData = async () => {
@@ -67,12 +73,14 @@ const onRefresherrefresh = async () => {
 
 onMounted(async () => {
   // TODO 失败？
+  isLoading.value = true
   await Promise.all([
     getHomeBannerData(),
     getHomeCategoryData(),
     getHomeHotData(),
     guessRef.value?.getMore(),
   ])
+  isLoading.value = false
 })
 </script>
 
