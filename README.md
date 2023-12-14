@@ -183,3 +183,12 @@ onMounted(async () => {
 ### 首页骨架屏
 
 微信小程序分离窗口顶部可以选择 `生成骨架屏`，将生成的 `.wxml` 和 `.wxss` 文件中的内容抽成一个 `.vue` 文件，在 `loading` 时展示
+
+### 热门推荐
+
+```js
+// 动态设置标题
+uni.setNavigationBarTitle({ title: currHot!.title })
+```
+
+## 分类

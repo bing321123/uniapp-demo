@@ -16,8 +16,8 @@
         <CategoryPanel :list="categoryList" />
         <HotPanel :list="hotList" />
         <XtxGuess ref="guessRef" />
-      </scroll-view>
-    </template>
+      </template>
+    </scroll-view>
   </view>
 </template>
 
