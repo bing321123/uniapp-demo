@@ -1,14 +1,6 @@
 import { http } from "@/utils/https";
-import type { PageResult, BannerItem, CategoryItem, HotItem, GuessItem, PageParams } from "@/types/home.d.ts";
-
-export const getHomeBannerApi = (distributionSite = 1) => {
-    return http<BannerItem[]>({
-        url: '/home/banner',
-        data: {
-            distributionSite,
-        },
-    })
-}
+import type { CategoryItem, HotItem, GuessItem } from "@/types/home.d.ts";
+import type { PageResult, PageParams } from "@/types/global.d.ts";
 
 export const getHomeCategoryApi = () => {
     return http<CategoryItem[]>({

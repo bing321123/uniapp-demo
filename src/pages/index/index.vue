@@ -28,16 +28,18 @@ import CategoryPanel from './components/CategoryPanel.vue'
 import HotPanel from './components/HotPanel.vue'
 import XtxSwiper from '@/components/XtxSwiper.vue'
 import XtxGuess from '@/components/XtxGuess.vue'
-import { getHomeBannerApi, getHomeCategoryApi, getHomeHotApi } from '@/services/home'
+import { getHomeCategoryApi, getHomeHotApi } from '@/services/home'
+import { getBannerApi } from '@/services/global'
 import { ref, onMounted } from 'vue'
-import type { BannerItem, CategoryItem, HotItem } from '@/types/home.d.ts'
+import type { CategoryItem, HotItem } from '@/types/home.d.ts'
+import type { BannerItem } from '@/types/global.d.ts'
 import type { XtxGuessInstance } from '@/types/component'
 
 const isLoading = ref(false)
 
 const bannerList = ref<BannerItem[]>([])
 const getHomeBannerData = async () => {
-  const { result } = await getHomeBannerApi()
+  const { result } = await getBannerApi()
   bannerList.value = result
 }
 

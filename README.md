@@ -192,3 +192,78 @@ uni.setNavigationBarTitle({ title: currHot!.title })
 ```
 
 ## 分类
+
+相同的类型和api封装到global文件里
+
+src\types\global.d.ts
+
+```ts
+
+// banner 数据类型
+export type BannerItem = {
+    // 跳转链接
+    hrefUrl: string
+    // id
+    id: string
+    // 图片链接
+    imgUrl: string
+    // 跳转类型
+    type: string
+}
+
+/** 通用分页结果类型 */
+export type PageResult<T> = {
+    /** 列表数据 */
+    items: T[]
+    /** 总条数 */
+    counts: number
+    /** 当前页数 */
+    page: number
+    /** 总页数 */
+    pages: number
+    /** 每页条数 */
+    pageSize: number
+}
+
+/** 通用分页参数类型 */
+export type PageParams = {
+    /** 页码：默认值为 1 */
+    page?: number
+    /** 页大小：默认值为 10 */
+    pageSize?: number
+}
+
+/** 通用商品类型 */
+export type GoodsItem = {
+    /** 商品描述 */
+    desc: string
+    /** 商品折扣 */
+    discount: number
+    /** id */
+    id: string
+    /** 商品名称 */
+    name: string
+    /** 商品已下单数量 */
+    orderNum: number
+    /** 商品图片 */
+    picture: string
+    /** 商品价格 */
+    price: number
+}
+```
+
+src\services\global.ts
+
+```ts
+import { http } from "@/utils/https";
+import type { BannerItem } from "@/types/global.d.ts";
+
+export const getBannerApi = (distributionSite = 1) => {
+    return http<BannerItem[]>({
+        url: '/home/banner',
+        data: {
+            distributionSite,
+        },
+    })
+}
+```

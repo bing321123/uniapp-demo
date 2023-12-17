@@ -1,0 +1,8 @@
+import { http } from "@/utils/https";
+import type { CategoryTopItem } from "@/types/category.d.ts";
+
+export const getCategoryTopApi = () => {
+    return http<CategoryTopItem[]>({
+        url: '/category/top',
+    })
+}
