@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useMemberStore } from '@/stores'
-import { http } from '@/utils/https'
+import { http } from '@/utils/http'
 
 const memberStore = useMemberStore()
 

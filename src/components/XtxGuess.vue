@@ -25,7 +25,8 @@
 
 <script setup lang="ts">
 import { getGuessApi } from '@/services/home'
-import type { GuessItem, PageParams } from '@/types/home.d.ts'
+import type { GuessItem } from '@/types/home.d.ts'
+import type { PageParams } from '@/types/global.d.ts'
 import { ref } from 'vue'
 
 const pageParams: Required<PageParams> = {

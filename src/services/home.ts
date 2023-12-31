@@ -1,4 +1,4 @@
-import { http } from "@/utils/https";
+import { http } from "@/utils/http";
 import type { CategoryItem, HotItem, GuessItem } from "@/types/home.d.ts";
 import type { PageResult, PageParams } from "@/types/global.d.ts";
 

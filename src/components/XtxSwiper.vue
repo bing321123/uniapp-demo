@@ -11,7 +11,7 @@
 </template>
 
 <script setup lang="ts">
-import type { BannerItem } from '@/types/home.d.ts'
+import type { BannerItem } from '@/types/global.d.ts'
 
 defineProps<{
   list: BannerItem[]
